@@ -1,17 +1,17 @@
 `default_nettype none
 
-module change_maker_updated_test
-  (logic [3:0] Cost,
-   logic [1:0] Pentagons,
-   logic [1:0] Triangles,
-   logic [1:0] Circles,
-   logic [3:0] Paid,
-   logic [2:0] FirstCoin,
-   logic [2:0] SecondCoin,
-   logic [3:0] Remaining,
-   logic       ExactAmount,
-   logic       NotEnoughChange,
-   logic       CoughUpMore);
+module change_maker_updated_test();
+  logic [3:0] Cost;
+  logic [1:0] Pentagons;
+  logic [1:0] Triangles;
+  logic [1:0] Circles;
+  logic [3:0] Paid;
+  logic [2:0] FirstCoin;
+  logic [2:0] SecondCoin;
+  logic [3:0] Remaining;
+   logic       ExactAmount;
+   logic       NotEnoughChange;
+   logic       CoughUpMore;
 
   change_maker_updated_test(.Cost, .Pentagons, .Triangles, .Circles, .Paid, .FirstCoin,
                             .SecondCoin, .Remaining, .ExactAmount, .NotEnoughChange, .CoughUpMore);
