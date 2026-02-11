@@ -22,13 +22,27 @@ module change_maker_updated
   logic [2:0] SecondCoin_int;
   logic [3:0] Remaining_int;
 
-  is_paid_less_than_cost u_less(.Paid(Paid), .Cost(Cost), .less(less));
-  does_paid_equal_cost   u_eq  (.Paid(Paid), .Cost(Cost), .exact(exact));
-  how_much_change        u_chg (.Paid(Paid), .Cost(Cost), .change(change));
+  is_paid_less_than_cost LESS(
+    .Paid(Paid),
+    .Cost(Cost),
+    .less(less)
+  );
+
+  does_paid_equal_cost EQUAL(
+    .Paid(Paid),
+    .Cost(Cost),
+    .exact(exact)
+  );
+
+  how_much_change CHANGE(
+    .Paid(Paid),
+    .Cost(Cost),
+    .change(change)
+  );
 
   assign more = (~less) & (~exact);
 
-  first_change u_first(
+  first_change FIRST(
     .change(change),
     .Pentagons(Pentagons),
     .Triangles(Triangles),
@@ -40,7 +54,7 @@ module change_maker_updated
     .CirLeft(CirLeft)
   );
 
-  second_change u_second(
+  second_change SECOND(
     .rem1(rem1),
     .PentLeft(PentLeft),
     .TriLeft(TriLeft),
@@ -49,19 +63,19 @@ module change_maker_updated
     .rem2(rem2)
   );
 
-  remaining_change u_rem(
+  remaining_change REMAIN(
     .rem2(rem2),
     .Remaining(Remaining_int)
   );
 
-  exact_amount u_exact_amt(
+  exact_amount EXACT(
     .exact_in(exact),
     .Paid(Paid),
     .Cost(Cost),
     .ExactAmount(ExactAmount)
   );
 
-  not_enough_change u_nec(
+  not_enough_change NEC(
     .more(more),
     .Remaining(Remaining_int),
     .NotEnoughChange(NotEnoughChange)
